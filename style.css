@@ -1,33 +1,29 @@
-/* تنسيقات CSS مفصولة ومعدلة - تطبيق الألوان الهادئة على الأزرار */
-
 :root {
-    /* ✅ ألوان الواجهة الأمامية الهادئة والجديدة */
-    --color-bg-dark: 25, 30, 35; /* أزرق داكن جداً */
-    --color-main-surface: 45, 50, 60; /* سطح أغمق قليلاً */
-    --color-accent-1: 100, 140, 140; /* أزرق مخضر هادئ */
-    --color-accent-2: 120, 150, 130; /* أخضر زيتوني هادئ */
-    --color-text-light: 220, 225, 230; /* لون نص فاتح وبارد */
+    --color-bg-dark: 25, 30, 35; 
+    --color-main-surface: 45, 50, 60; 
+    --color-accent-1: 100, 140, 140; 
+    --color-accent-2: 120, 150, 130; 
+    --color-text-light: 220, 225, 230; 
     --color-text-dim: 160, 170, 180; 
-    --color-interactive-hover: 160, 200, 200; /* لون التفاعل (أزرق فاتح هادئ) */
+    --color-interactive-hover: 160, 200, 200; 
     --glow-strength: 0.8; 
 
-    /* ✅ استبدال ألوان النيون القوية للحركة في الخلفية بألوان هادئة */
-    --color1: 80, 120, 120; /* أزرق هادئ */
-    --color2: 100, 140, 140; /* أزرق-أخضر هادئ */
-    --color3: 120, 150, 150; /* فاتح هادئ */
-    --color4: 150, 80, 80; /* أحمر هادئ (ترابي) */
-    --color5: 140, 140, 100; /* أصفر/أخضر هادئ */
-    --color-bg1: 15, 20, 25; /* خلفية داكنة جداً هادئة */
-    --color-bg2: 30, 40, 50; /* تدرج أغمق هادئ */
-    --color-accent: 100, 140, 140; /* مرجع للون Accent العام */
+    --color1: 80, 120, 120; 
+    --color2: 100, 140, 140; 
+    --color3: 120, 150, 150; 
+    --color4: 150, 80, 80; 
+    --color5: 140, 140, 100; 
+    --color-bg1: 15, 20, 25; 
+    --color-bg2: 30, 40, 50; 
+    --color-accent: 100, 140, 140; 
     
     --circle-size: 80%;
     --blending: hard-light;
 }
 
 body {
-    background-color: rgb(var(--color-bg-dark)); 
-    color: rgb(var(--color-text-light)); 
+    background-color: rgb(14, 14, 14);
+    color: rgb(214, 179, 245);
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -37,9 +33,8 @@ body {
     direction: ltr;
 }
 
-/*-----------animated background - تطبيق الألوان الهادئة ---------*/
 .gr-bg {
-    background: linear-gradient(40deg, rgb(var(--color-bg1)), rgb(var(--color-bg2)));
+    background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -51,7 +46,6 @@ svg { display: none; }
 .gr-con {
     width: 100vh;
     height: 100vh;
-    /* ✅ الحفاظ على قوة blur الأصلية لتأثير الكور */
     filter: url(#goo) blur(25px); 
 }
 .g1 {
@@ -140,9 +134,7 @@ svg { display: none; }
     100% { transform: translateY(-50%) translateX(-10%); }
 }
 
-/*-------------------------------------*/
 
-/* تنسيق الشريط العلوي */
 .header {
     width: 100%;
     display: flex;
@@ -159,9 +151,8 @@ svg { display: none; }
 }
 
 .uni-logo {
-   width: 180px; 
+    width: 180px; 
     height: auto;
-    /* ✅ جعل الشعار يظهر باللون الأبيض */
     filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(var(--color-accent), 0.7)); 
     margin-right: 20px; 
     order: 0;
@@ -174,11 +165,10 @@ svg { display: none; }
     line-height: 1.5;
     color: rgb(var(--color-text-light)); 
     max-width: 50%; 
-    margin-left: 10px; 
-    margin-right: 50px; 
+    margin-left: 20px; 
+    margin-right: 20px; 
 }
 
-/* ✅ تنسيق الحاوية الرئيسية (LogN) - تطبيق الهيكل ثنائي الأعمدة */
 .logn {
     z-index: 90;
     top: 50%; 
@@ -217,7 +207,6 @@ h3 {
     text-align: left;
 }
 
-/* ✅ هيكل الأعمدة الثنائية */
 .two-column-layout {
     display: flex;
     gap: 30px;
@@ -238,7 +227,6 @@ h3 {
     box-sizing: border-box; 
 }
 
-/* ✅ مربع الإدخال التفاعلي */
 input, textarea {
     box-sizing: border-box; 
     margin: 10px 0; 
@@ -260,14 +248,12 @@ input:focus, input:hover {
     background-color: rgba(238, 238, 238, 0.8); 
 }
 
-/* ✅ تنسيق صف الأزرار */
 .buttons-row {
     display: flex;
     gap: 15px;
     margin-top: 15px;
 }
 
-/* تنسيق النتيجة */
 .result {
     flex-grow: 1; 
     background: rgba(var(--color-bg-dark), 0.8); 
@@ -276,7 +262,7 @@ input:focus, input:hover {
     border-radius: 8px; 
     min-height: 185px; 
     word-break: break-all;
-    width: auto; 
+    width: 100%; 
     text-align: left; 
     color: rgb(var(--color-text-light));
     border: 1px dashed rgba(var(--color-accent), 0.4); 
@@ -284,7 +270,6 @@ input:focus, input:hover {
     line-height: 1.6;
 }
 
-/* تنسيق الأزرار الجديدة (.add) */
 @property --deg {
     syntax: "<angle>";
     inherits: true;
@@ -294,10 +279,9 @@ input:focus, input:hover {
     flex: 1; 
     margin-top: 5px; 
     cursor: pointer;
-    /* ✅ خلفية الزر الهادئة */
     background: rgb(var(--color-accent-2)); 
-    /* ✅ لون النص الداخلي (فاتح) */
-    color: rgb(var(--color-text-light)); 
+    color: rgb(var(--color-bg-dark)); 
+    border: none;
     border-radius: 10px;
     box-sizing: border-box; 
     width: 100%; 
@@ -315,7 +299,6 @@ input:focus, input:hover {
 .add:hover {
     transform: translateY(-2px) scale(1.01); 
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 
-                /* ✅ توهج تفاعلي هادئ */
                 0 0 20px rgba(var(--color-interactive-hover), 0.8); 
 }
 
@@ -326,7 +309,6 @@ input:focus, input:hover {
     left: -1px;
     height: 100%; 
     width: 100%; 
-    /* ✅ تدرج لوني يعكس الألوان الهادئة الجديدة */
     background: conic-gradient(
         from var(--deg) at center,
         rgba(var(--color-accent-1), 0.8),
@@ -351,7 +333,7 @@ input:focus, input:hover {
     }
 }
 
-/* ✅ دعم استجابة الشاشة (Mobile Responsiveness) */
+/*  (Mobile Responsiveness) */
 @media (max-width: 768px) {
     .two-column-layout {
         flex-direction: column; 
