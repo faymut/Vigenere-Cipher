@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Caesar Cipher</title> 
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href="style.css"> 
+<script src="script.js" defer></script> 
+</head>
+<body>
+
+<div class="gr-bg">
+    <div class="gr-con">
+        <div class="g1"></div>
+        <div class="g2"></div>
+        <div class="g3"></div>
+        <div class="g4"></div>
+        <div class="g5"></div>
+        <div class="inter"></div>
+    </div>
+</div>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <defs>
+        <filter id="goo">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+            <feColorMatrix
+                in="blur"
+                mode="matrix"
+                values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 18 -8"
+                result="goo"
+            />
+            <feBlend in="SourceGraphic" in2="goo" />
+        </filter>
+    </defs>
+</svg>
+<div class="header" style="z-index: 100;">
+    <img src="uni-logo.png" alt="University Logo" class="uni-logo"> 
+    
+    <div class="uni-text">
+        Imam Abdulrahman Bin Faisal University<br> 
+        College of Applied Studies and Community Service<br> 
+        Department of Management Information Systems
+    </div>
+</div>
+
+<div class="logn">
+    <h1>Smart Caesar Cipher</h1> 
+
+    <div class="two-column-layout">
+
+        <div class="input-section">
+             <h3>enter the message </h3>
+            <input type="text" id="textInput" placeholder="Enter Text to Encrypt"> 
+            <input type="text" id="keyInput" placeholder="Enter Cipher Key"> 
+            
+            <div class="buttons-row">
+                <button onclick="encryptText()" class="add encrypt-btn">Encrypt</button> 
+                <button onclick="decryptText()" class="add decrypt-btn">Decrypt</button> 
+            </div>
+        </div>
+        <div class="output-section">
+            <h3>Output Ciphertext</h3>
+            <div class="result" id="resultOutput" data-encrypted="">Result will appear here</div>
+        </div>
+        
+    </div>
+</div>
+
+</body>
+</html>
