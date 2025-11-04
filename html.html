@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Caesar Cipher</title> 
+<!-- استيراد خط Playfair Display (Serif) -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href="style.css"> 
+<script>
+    const arabicLetters = "ابتثجحخدذرزسشصضطظعغفقكلمنهويءأإآة"; 
+    const englishLower = "abcdefghijklmnopqrstuvwxyz";
+    const englishUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const digits = "0123456789";
+    const symbols = " .,!?@#%^&*()-_+=[]{};:'\"/\\|<>~`₹$€£،؛";
+
+    function keyToNumber(key, n) {
+        let sum = 0;
+        for (let ch of key) sum += ch.charCodeAt(0);
+        return sum % n;
+    }
+
+    function caesarEncrypt(text, key) {
+        let result = "";
+        for (let ch of text) {
+            if (englishLower.includes(ch)) {
+                const n = englishLower.length;
+                const k = keyToNumber(key, n);
+                const index = englishLower.indexOf(ch);
+                result += englishLower[(index + k) % n];
+            } else if (englishUpper.includes(ch)) {
+                const n = englishUpper.length;
+                const k = keyToNumber(key, n);
+                const index = englishUpper.indexOf(ch);
+                result += englishUpper[(index + k) % n];
+            } else if (arabicLetters.includes(ch)) { 
+                const n = arabicLetters.length;
+                const k = keyToNumber(key, n);
+                const index = arabicLetters.indexOf(ch);
+                result += arabicLetters[(index + k) % n];
+            } else {
+                result += ch;
+            }
+        }
+        return result;
+    }
+
+    function caesarDecrypt(text, key) {
+        let result = "";
+        for (let ch of text) {
+            if (englishLower.includes(ch)) {
+                const n = englishLower.length;
+                const k = keyToNumber(key, n);
+                const index = englishLower.indexOf(ch);
+                result += englishLower[(index - k + n) % n];
+            } else if (englishUpper.includes(ch)) {
+                const n = englishUpper.length;
+                const k = keyToNumber(key, n);
+                const index = englishUpper.indexOf(ch);
+                result += englishUpper[(index - k + n) % n];
+            } else if (arabicLetters.includes(ch)) { 
+                const n = arabicLetters.length;
+                const k = keyToNumber(key, n);
+                const index = arabicLetters.indexOf(ch);
+                result += arabicLetters[(index - k + n) % n];
+            } else {
+                result += ch;
+            }
+        }
+        return result;
+    }
+
+    function encryptText() {
+        const text = document.getElementById("textInput").value;
+        const key = document.getElementById("keyInput").value;
+        const encrypted = caesarEncrypt(text, key);
+        document.getElementById("resultOutput").innerText = encrypted; 
+    }
+
+    function decryptText() {
+        const encryptedText = document.getElementById("resultOutput").dataset.encrypted || document.getElementById("resultOutput").innerText;
+        if (!encryptedText || encryptedText.includes("Result will appear here")) {
+            document.getElementById("resultOutput").innerText = "⚠ Please encrypt the text first!"; 
+            return;
+        }
+        const key = document.getElementById("keyInput").value;
+        const decrypted = caesarDecrypt(encryptedText, key);
+        document.getElementById("resultOutput").innerText = decrypted; 
+    }
+</script>
+
+</head>
+<body>
+
+<!-- الخلفية المتحركة -->
+<div class="gr-bg">
+    <div class="gr-con">
+        <div class="g1"></div>
+        <div class="g2"></div>
+        <div class="g3"></div>
+        <div class="g4"></div>
+        <div class="g5"></div>
+        <div class="inter"></div>
+    </div>
+</div>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <defs>
+        <filter id="goo">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+            <feColorMatrix
+                in="blur"
+                mode="matrix"
+                values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
+                result="goo"
+            />
+            <feBlend in="SourceGraphic" in2="goo" />
+        </filter>
+    </defs>
+</svg>
+<!-- نهاية عناصر الخلفية المتحركة -->
+
+<!-- الشريط العلوي -->
+<div class="header" style="z-index: 100;">
+    <!-- الشعار أولاً ليذهب لليسار (L-T-R) -->
+    <img src="uni-logo.png" alt="University Logo" class="uni-logo"> 
+    
+    <!-- النص ثانياً ليذهب لليمين (L-T-R) -->
+    <div class="uni-text">
+        Imam Abdulrahman Bin Faisal University<br> 
+        College of Applied Studies and Community Service<br> 
+        Department of Management Information Systems
+    </div>
+</div>
+
+<!-- ✅ المحتوى الرئيسي -->
+<div class="logn">
+    <h1>Smart Caesar Cipher</h1> 
+
+    <!-- ✅ حاوية Flexbox جديدة لتقسيم الصفحة -->
+    <div class="two-column-layout">
+
+        <!-- ✅ 1. قسم الإدخال والأزرار (اليمين) -->
+        <div class="input-section">
+             <h3>enter the message </h3>
+            <input type="text" id="textInput" placeholder="Enter Text to Encrypt"> 
+            <input type="text" id="keyInput" placeholder="Enter Cipher Key"> 
+            
+            <div class="buttons-row">
+                <button onclick="encryptText()" class="add encrypt-btn">Encrypt</button> 
+                <button onclick="decryptText()" class="add decrypt-btn">Decrypt</button> 
+            </div>
+        </div>
+        <div class="output-section">
+            <h3>Output Ciphertext</h3>
+            <div class="result" id="resultOutput" data-encrypted="">Result will appear here</div>
+        </div>
+        
+    </div>
+</div>
+
+</body>
+</html>
