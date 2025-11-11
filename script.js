@@ -91,12 +91,12 @@ console.log(document.getElementById("textInput").value);
 function decryptText() {
   const msg = document.getElementById("resultOutput");
 
-  const encryptedText =  document.getElementById("textInput").value;
-  if (!encryptedText || encryptedText.includes("Result will appear here" || document.getElementById("textInput").value  == " " )) {
-  //  msg.innerText = "⚠ Please encrypt the text first!"; 
-    encryptedText = document.getElementById("encrypted").dataset.encrypted || document.getElementById("encrypted").innerText;
+  const encryptedText =  document.getElementById("encrypted").dataset.encrypted || document.getElementById("encrypted").innerText;
+  if (!encryptedText || encryptedText.includes("Result will appear here")) {
+    msg.innerText = "⚠ Please encrypt the text first!"; 
+    return;
   }
-  const key = document.getElementById("keyInput").value;
+  const key = document.getElementById("encryptkey").value;
   const decrypted = caesarDecrypt(encryptedText, key);
   msg.innerText = decrypted; 
 }
