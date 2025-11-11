@@ -81,19 +81,22 @@ function caesarDecrypt(text, key) {
 }
 
 function encryptText() {
-  const text = document.getElementById("textInput").value;
-  const key = document.getElementById("keyInput").value;
+  const text = document.getElementById("encryptInput").value;
+  const key = document.getElementById("encryptkey").value;
   const encrypted = caesarEncrypt(text, key);
-  document.getElementById("resultOutput").innerText = encrypted; 
+  document.getElementById("encrypted").innerText = encrypted; 
 }
+console.log(document.getElementById("textInput").value);
 
-function decryptText() {
-  const encryptedText = document.getElementById("resultOutput").dataset.encrypted || document.getElementById("resultOutput").innerText;
-  if (!encryptedText || encryptedText.includes("Result will appear here")) {
-    document.getElementById("resultOutput").innerText = "⚠ Please encrypt the text first!"; 
-    return;
+function decryptText() {
+  const msg = document.getElementById("resultOutput");
+
+  const encryptedText =  document.getElementById("textInput").value;
+  if (!encryptedText || encryptedText.includes("Result will appear here" || document.getElementById("textInput").value  == " " )) {
+  //  msg.innerText = "⚠ Please encrypt the text first!"; 
+    encryptedText = document.getElementById("encrypted").dataset.encrypted || document.getElementById("encrypted").innerText;
   }
   const key = document.getElementById("keyInput").value;
   const decrypted = caesarDecrypt(encryptedText, key);
-  document.getElementById("resultOutput").innerText = decrypted; 
+  msg.innerText = decrypted; 
 }
