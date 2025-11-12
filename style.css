@@ -180,7 +180,7 @@ svg { display: none; }
     color: white;
     height: auto; 
     width: 90%;
-    max-width: 700px; 
+    max-width: 650px; 
     
     background-color: rgba(39, 37, 37, 0.796); 
     z-index: 10;
@@ -351,4 +351,5 @@ input:focus, input:hover {
         margin-left: 10px;
     }
 }
+
 
